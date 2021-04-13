@@ -56,4 +56,3 @@ def compare_list(a, b):
 
 diff_files(dog)
 
-test test s 
