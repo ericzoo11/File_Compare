@@ -56,5 +56,3 @@ def compare_list(a, b):
 
 diff_files(dog)
 
-
-l;ksd;lksdl;fk
