@@ -1,18 +1,13 @@
+import os 
 import filecmp as fc
+import sys 
 
-# global variables
-##################
-dir1 = '/Users/ericzhu/Documents/My_Stuff/Resume_Stuff/2018'
-dir2 = '/Volumes/500_T5_SDD/My_Stuff/Resume_Stuff/2018'
-
-dog = fc.dircmp(dir1, dir2)
-
-def diff_files(dir_obj):
+def dir_diff(dir_obj):
     
     # grab left and right directories with the help of the built in function 
     l_list = dir_obj.left_list
     r_list = dir_obj.right_list
-
+    
     #run lists through hidden_remove
     list1 = hidden_remove(r_list)
     list2 = hidden_remove(l_list)   
@@ -22,7 +17,6 @@ def diff_files(dir_obj):
     print("files missing in one of the directories:")
     for i in diff_files:
         print(i)
-    
     
 ######################################################  
 #function to remove hidden files from my list of names
@@ -50,9 +44,29 @@ def compare_list(a, b):
     #return list of different files found
     return c
 
+
+def dir_iterate(dir1, dir2):
+    for subdir, dirs, files in os.walk(dir1):
+        print(subdir)
+        for file in files:
+            pass
 ######
 #Main
 ######
 
-diff_files(dog)
+if __name__ == "__main__":
 
+    root_dir1 = '/Users/ericzhu/Documents/My_Stuff/Resume_Stuff/'
+    root_dir2 = '/Users/ericzhu/Desktop/Resume_Stuff/'
+    #dog = fc.dircmp(root_dir1, root_dir2)
+    #dir_diff(dog)
+    #dir_iterate(root_dir1, root_dir2)
+    dog = fc.dircmp(root_dir1, root_dir2, ignore=None, hide=None)
+    
+    sys.stdout = open('output_file.txt', 'w')
+    dog.report_full_closure() 
+    sys.stdout.close()
+
+    #f = open("output_file", "w")
+    #f.write(cat)
+    #f.close
