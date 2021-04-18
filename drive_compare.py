@@ -35,9 +35,7 @@ def org_list(listA):
 ######
 #Main
 ######
-
-if __name__ == "__main__":
-
+def main():
     root_dir1 = '/Users/ericzhu/Documents/My_Stuff/Resume_Stuff/'
     root_dir2 = '/Users/ericzhu/Desktop/Resume_Stuff/'
 
@@ -54,11 +52,14 @@ if __name__ == "__main__":
     finally:
         #revert to default stdout
         sys.stdout = default_stdout
-    print("\n\n\n")
     
     # data is now in dictionary ready to go to extract and print
     data_ready = org_list(parse_report()) 
-    
+    print(data_ready)
+
+if __name__ == "__main__":
+    main()
+
 
 ''' First go at script functions
 def dir_diff(dir_obj):
